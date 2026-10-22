@@ -1,0 +1,41 @@
+-- Crie uma tabela calendário no Power BI e marque-a como tabela de datas.
+-- Medidas abaixo assumem importação das tabelas agro ou das views correspondentes.
+
+Área Plantada (ha) =
+SUM ( vw_plantio_analitico[area_plantada_ha] )
+
+Área Colhida (ha) =
+CALCULATE (
+    SUM ( vw_plantio_analitico[area_plantada_ha] ),
+    vw_plantio_analitico[producao_t] > 0
+)
+
+Produção Realizada (t) =
+SUM ( vw_plantio_analitico[producao_t] )
+
+Produtividade (t/ha) =
+DIVIDE ( [Produção Realizada (t)], [Área Colhida (ha)] )
+
+Custo Total (R$) =
+SUM ( vw_plantio_analitico[custo_total] )
+
+Custo por Hectare (R$/ha) =
+DIVIDE ( [Custo Total (R$)], [Área Plantada (ha)] )
+
+Produção Prevista (t) =
+SUM ( vw_plantio_analitico[producao_prevista_t] )
+
+Desvio da Previsão (t) =
+[Produção Realizada (t)] - [Produção Prevista (t)]
+
+Atingimento da Previsão (%) =
+DIVIDE ( [Produção Realizada (t)], [Produção Prevista (t)] )
+
+Custo de Aplicações (R$) =
+SUM ( vw_aplicacoes_analiticas[custo_total] )
+
+Quantidade de Insumos Aplicada =
+SUM ( vw_aplicacoes_analiticas[quantidade] )
+
+Talhões Monitorados =
+DISTINCTCOUNT ( dim_talhao[talhao_id] )

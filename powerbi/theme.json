@@ -1,0 +1,15 @@
+{
+  "name": "Agro BI Territorial",
+  "dataColors": [
+    "#2E7D32",
+    "#66BB6A",
+    "#A5D6A7",
+    "#8D6E63",
+    "#F9A825",
+    "#1565C0",
+    "#78909C"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#263238",
+  "tableAccent": "#2E7D32"
+}
